@@ -1,77 +1,103 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
 }
 
-body{
-    background: linear-gradient(to right, #74ebd5, #ACB6E5);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.container {
+  max-width: 1000px;
+  width: 100%;
+  padding: 2rem;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.container{
-    background-color: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    text-align: center;
-    width: 90%;
-    max-width: 400px;
+h1 {
+  font-size: 3rem;
+  color: #4e54c8;
+  margin-bottom: 1rem;
 }
 
-h1{
-    color: #333;
-    margin-bottom: 1.5rem;
+.search-bar {
+  margin-bottom: 1.5rem;
 }
 
-.input-box{
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
+#cityInput {
+  padding: 0.8rem 1rem;
+  font-size: 1.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 250px;
 }
 
-input{
-    flex: 1;
-    padding: 0.8rem;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
+#searchBtn {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.6rem;
+  margin-left: 1rem;
+  background-color: #645cbb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-button{
-    background-color: #4e54c8;
-    color: white;
-    border: none;
-    padding: 0.8rem 1.2rem;
-    font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.2s ease;
+#cityName {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: #222;
 }
 
-button:hover{
-    background-color: #3f46a8;
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
 }
 
-#weatherBox{
-    margin-top: 1rem;
-    text-align: left;
-    padding: 1rem;
-    background: #f9f9f9;
-    border-radius: 10px;
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 30%;
+  min-width: 260px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  box-sizing: border-box;
 }
 
-.hidden{
-    display: none;
+.card h3 {
+  margin-bottom: 0.5rem;
+  color: #4e54c8;
 }
 
-#message{
-    margin-top: 1rem;
-    color: lightblue;
-    font-weight: bold;
+.card p {
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.main-value {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0.5rem 0 1rem;
+}
+
+.weather-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0.5rem 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.placeholder {
+  font-size: 1.6rem;
+  color: #999;
+  margin-top: 2rem;
+  text-align: center;
 }

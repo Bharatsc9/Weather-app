@@ -1,31 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Weather App</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container">
       <h1>🌤️ Weather App</h1>
 
-      <div class="input-box">
-        <input type="text" id="cityInput" placeholder="Enter city name">
-        <button id="getWeatherBtn">Get Weather</button>
+      <div class="search-bar">
+        <input type="text" id="cityInput" placeholder="Enter city name" />
+        <button id="searchBtn">Get Weather</button>
       </div>
 
-      <div id="weatherBox" class="hidden">
-        <h2 id="cityName">City Name</h2>
-        <p><strong>Temperature: </strong><span id="temperature">--</span></p>
-        <p><strong>Humidity: </strong><span id="humidity">--</span></p>
-        <p><strong>Wind Speed: </strong><span id="wind">--</span></p>
-        <p><strong>Condition: </strong><span id="condition">--</span></p>
+      <div id="cityName"></div>
+
+      <div id="placeholder" class="placeholder">
+        🔍 Search a city to view weather
+      </div>
+      <div id="weatherCards" class="cards hidden">
+        <!-- Temperature Card -->
+        <div class="card">
+          <h3>🌡️ Temperature</h3>
+          <div class="main-value" id="temp_main"></div>
+          <p>Feels Like: <span id="feels_like"></span> °C</p>
+          <p>Min Temp: <span id="min_temp"></span> °C</p>
+          <p>Max Temp: <span id="max_temp"></span> °C</p>
+          <p>Pressure: <span id="pressure"></span> hPa</p>
+        </div>
+
+        <!-- Humidity Card -->
+        <div class="card">
+          <h3>💧 Humidity</h3>
+          <div class="main-value" id="humidity_main"></div>
+          <p>Latitude: <span id="lat"></span></p>
+          <p>Longitude: <span id="lon"></span></p>
+          <p>Timezone: <span id="timezone"></span></p>
+          <p>Local Time: <span id="local_time"></span></p>
+        </div>
+
+        <!-- Wind/Weather Card -->
+        <div class="card">
+          <h3>🌬️ Wind & Weather</h3>
+          <div class="main-value" id="wind_main"></div>
+          <p>Wind Direction: <span id="wind_deg"></span>°</p>
+          <p>Condition: <span id="condition"></span></p>
+          <p>Sunrise: <span id="sunrise"></span></p>
+          <p>Sunset: <span id="sunset"></span></p>
+        </div>
       </div>
 
       <div id="message"></div>
     </div>
-    
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
