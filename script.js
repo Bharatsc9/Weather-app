@@ -34,14 +34,12 @@ const fetchWeather = async (city) => {
       const abs = Math.abs(seconds);
       const hours = Math.floor(abs / 3600);
       const minutes = Math.floor((abs % 3600) / 60);
-      return `${sign}${String(hours).padStart(2, "0")}:${String(
-        minutes
-      ).padStart(2, "0")}`;
+      return `${sign}${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
     };
 
-    const getLocalTimeString = (local_time) => {
+    const getLocalTimeString = (offSetTime) => {
       const utc = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
-      const localTime = new Date(utc + local_time * 1000);
+      const localTime = new Date(utc + offSetTime * 1000);
       return localTime.toLocaleTimeString();
     };
 
@@ -72,6 +70,13 @@ const fetchWeather = async (city) => {
   }
 };
 
+window.addEventListener("DOMContentLoaded", () =>{
+  const lastCity = localStorage.getItem("lastCity");
+  if(lastCity){    
+    fetchWeather(lastCity);
+  }
+});
+
 document.getElementById("searchBtn").addEventListener("click", () => {
   const city = document.getElementById("cityInput").value.trim();
   if (city === "") {
@@ -79,5 +84,6 @@ document.getElementById("searchBtn").addEventListener("click", () => {
     return;
   }
 
+  localStorage.setItem("lastCity", city);
   fetchWeather(city);
 });
