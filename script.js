@@ -1,10 +1,12 @@
 const apiKey = "360e47da702a82c3c3504a806826c0eb";
 
 const fetchWeather = async (city) => {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
+    city
+  )}&appid=${apiKey}&units=metric`;
 
   const message = document.getElementById("message");
-  const weatherBox = document.getElementById("weatherBox");
+  const weatherCards = document.getElementById("weatherCards");
   // message.textContent = "Loading...";
 
   try {
@@ -12,6 +14,7 @@ const fetchWeather = async (city) => {
     const data = await response.json();
 
     if (data.cod !== 200) {
+      // console.log(data.cod)
       throw new Error(data.message);
     }
 
@@ -25,7 +28,9 @@ const fetchWeather = async (city) => {
     document.getElementById("max_temp").textContent = data.main.temp_max;
     document.getElementById("pressure").textContent = data.main.pressure;
 
-    document.getElementById("humidity_main").textContent = `${data.main.humidity} %`;
+    document.getElementById(
+      "humidity_main"
+    ).textContent = `${data.main.humidity} %`;
     document.getElementById("lat").textContent = data.coord.lat;
     document.getElementById("lon").textContent = data.coord.lon;
 
@@ -34,7 +39,9 @@ const fetchWeather = async (city) => {
       const abs = Math.abs(seconds);
       const hours = Math.floor(abs / 3600);
       const minutes = Math.floor((abs % 3600) / 60);
-      return `${sign}${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
+      return `${sign}${String(hours).padStart(2, "0")}:${String(
+        minutes
+      ).padStart(2, "0")}`;
     };
 
     const getLocalTimeString = (offSetTime) => {
@@ -43,10 +50,16 @@ const fetchWeather = async (city) => {
       return localTime.toLocaleTimeString();
     };
 
-    document.getElementById("timezone").textContent = formatTimezone(data.timezone);
-    document.getElementById("local_time").textContent = getLocalTimeString(data.timezone);
+    document.getElementById("timezone").textContent = formatTimezone(
+      data.timezone
+    );
+    document.getElementById("local_time").textContent = getLocalTimeString(
+      data.timezone
+    );
 
-    document.getElementById("wind_main").textContent = `${data.wind.speed} Km/h`;
+    document.getElementById(
+      "wind_main"
+    ).textContent = `${data.wind.speed} Km/h`;
     document.getElementById("wind_deg").textContent = data.wind.deg;
     document.getElementById("condition").textContent = data.weather[0].main;
 
@@ -56,23 +69,27 @@ const fetchWeather = async (city) => {
       return date.toLocaleTimeString();
     };
 
-    document.getElementById("sunrise").textContent = formatTime(data.sys.sunrise);
+    document.getElementById("sunrise").textContent = formatTime(
+      data.sys.sunrise
+    );
     document.getElementById("sunset").textContent = formatTime(data.sys.sunset);
 
     document.getElementById("placeholder").style.display = "none";
     document.getElementById("weatherCards").classList.remove("hidden");
+    document.getElementById("cityName").classList.remove("hidden");
 
     message.textContent = "";
   } catch (error) {
     // console.error("Error fetching weather:", error);
-    weatherBox.classList.add("hidden");
+    weatherCards?.classList.add("hidden");
+    cityName?.classList.add("hidden");
     message.textContent = "❌ " + error.message;
   }
 };
 
-window.addEventListener("DOMContentLoaded", () =>{
+window.addEventListener("DOMContentLoaded", () => {
   const lastCity = localStorage.getItem("lastCity");
-  if(lastCity){    
+  if (lastCity) {
     fetchWeather(lastCity);
   }
 });
@@ -90,20 +107,20 @@ document.getElementById("searchBtn").addEventListener("click", () => {
 
 const themeToggle = document.getElementById("themeToggle");
 
-window.addEventListener("DOMContentLoaded", ()=>{
+window.addEventListener("DOMContentLoaded", () => {
   const theme = localStorage.getItem("theme");
-  if(theme === "dark"){
+  if (theme === "dark") {
     document.body.classList.add("dark");
     themeToggle.checked = true;
   }
 });
 
-themeToggle.addEventListener("change", ()=>{
-  if(themeToggle.checked){
+themeToggle.addEventListener("change", () => {
+  if (themeToggle.checked) {
     document.body.classList.add("dark");
-    localStorage.setItem("theme","dark");
-  }else{
+    localStorage.setItem("theme", "dark");
+  } else {
     document.body.classList.remove("dark");
-    localStorage.setItem("theme","light");
+    localStorage.setItem("theme", "light");
   }
 });
